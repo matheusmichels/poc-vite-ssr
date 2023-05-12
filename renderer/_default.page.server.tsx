@@ -17,13 +17,15 @@ async function render(pageContext: PageContextServer) {
 
   const { documentProps } = pageContext.exports;
   const title = (documentProps && documentProps.title) || 'Vite SSR app';
-  const desc = (documentProps && documentProps.description) || 'App using Vite + vite-plugin-ssr';
+  const desc =
+    (documentProps && documentProps.description) ||
+    'App using Vite + vite-plugin-ssr';
 
   if (Page) {
     pageHtml = ReactDOMServer.renderToString(
       <PageShell pageContext={pageContext}>
         <Page {...pageProps} />
-      </PageShell>,
+      </PageShell>
     );
   }
 

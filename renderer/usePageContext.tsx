@@ -10,7 +10,13 @@ export { usePageContext };
 
 const Context = React.createContext<PageContext | null>(null);
 
-function PageContextProvider({ pageContext, children }: { pageContext: PageContext; children: React.ReactNode }) {
+function PageContextProvider({
+  pageContext,
+  children,
+}: {
+  pageContext: PageContext;
+  children: React.ReactNode;
+}) {
   return <Context.Provider value={pageContext}>{children}</Context.Provider>;
 }
 

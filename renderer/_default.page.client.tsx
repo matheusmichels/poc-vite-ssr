@@ -11,23 +11,29 @@ async function render(pageContext: PageContextClient) {
   console.log('PageContext', pageContext);
 
   const { Page, pageProps } = pageContext;
-  if (!Page) throw new Error('Client-side render() hook expects pageContext.Page to be defined');
+  if (!Page) {
+    throw new Error(
+      'Client-side render() hook expects pageContext.Page to be defined'
+    );
+  }
 
   const pageView = document.getElementById('page-view');
-  if (!pageView) throw new Error('Client-side render() hook expects pageView to be defined');
+  if (!pageView) {
+    throw new Error('Client-side render() hook expects pageView to be defined');
+  }
 
-  if (pageView.firstChild) {
+  if (pageView.innerHTML) {
     hydrateRoot(
       pageView,
       <PageShell pageContext={pageContext}>
         <Page {...pageProps} />
-      </PageShell>,
+      </PageShell>
     );
   } else {
     createRoot(pageView).render(
       <PageShell pageContext={pageContext}>
         <Page {...pageProps} />
-      </PageShell>,
+      </PageShell>
     );
   }
 }
